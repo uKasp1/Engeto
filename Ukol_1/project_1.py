@@ -9,24 +9,24 @@ def start():
     # Login to the program
     def Login():
         # Credentials input
-        users = {1:
+        users = {0:
                  {"name":"bob",
                   "password":"123"},
-                2:
+                1:
                  {"name":"ann",
                   "password":"pass123"},
-                3:
+                2:
                  {"name":"mike",
                   "password":"password123"},
-                4:
+                3:
                  {"name":"liz",
                   "password":"pass123"},
                 }
               
         login_name = input("\nInsert user name: ")
         login_password = input("Inser password: " )
-        
-        for i in users:
+
+        for i in range(3):
             if login_name == users[i]["name"] and login_password == users[i]["password"]:
                 print("*"*40)
                 print("Welcome to the app,", login_name ,"\nWe have 3 texts to be analyzed.")
@@ -38,11 +38,14 @@ def start():
                 print("*"*25)
                 Login()
             else:
-                print("*"*44)
-                print("Unregistered user, terminating the program..")
-                print("*"*44)
-                quit()   
+                continue
+        else:
+            print("*"*44)
+            print("Unregistered user, terminating the program..")
+            print("*"*44)
+            quit()   
     Login()
+    
     # import the task_template.py (needs to be in poject folder) as task 
     import task_template as task
 
