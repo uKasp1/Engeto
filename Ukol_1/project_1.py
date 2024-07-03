@@ -59,8 +59,7 @@ def text_analyze():
     try:
     #Takes a number of texts in task.TEXTS list 
         number_of_texts = len(task.TEXTS)
-        print("Enter a number btw. 1 and", number_of_texts , "to select: ")
-        text_number = int(input("Choose a number:"))
+        text_number = int(input(f"Enter a number btw. 1 and {number_of_texts} to select: "))
         print("You choose text n.", text_number)
         print("*"*40) 
 
