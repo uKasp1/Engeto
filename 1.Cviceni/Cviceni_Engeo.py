@@ -290,10 +290,69 @@ for radek in range(velikost):
     for bunka in range(velikost):
         # Vytvoř index, který vybere jednu z hodnot v proměnné "symboly"
         index = (radek + bunka) % len(symboly)
-        print(index)
         rada.append(symboly[index])
     # Přidej hotové buňky do proměnné "sachovnice"
     sachovnice.append(''.join(rada))
 # Vypiš výslednou šachovnici
 print('\n'.join(sachovnice))
+"""
+
+"""
+seznam_slov = ["jablko", "pomeranč", "banán", "kiwi", "hruška"]
+delky_slov = {}
+
+for i in seznam_slov:
+    delky_slov.update({i:len(i)})
+
+print(delky_slov)
+"""
+
+"""
+slova = []
+while len(slova) < 3:
+    slovo = input("ZADEJ SLOVO ZE ČTYŘ:")
+    if slovo in slova:
+        print("Slovo", slovo,"uz je ulozene")
+    elif len(slovo) != 4:
+        print("Slovo není dlouhé čtyři znaky")
+    else:
+        slova.append(slovo)
+else:
+    print("Už mám uložené tři slova")    
+"""
+"""
+ovoce = ["jablko", "banan", "citron", "pomeranc"]
+print("Dostupne ovoce", ", ".join(ovoce))
+
+while True: 
+    vyber = input("VYBER Z DOSTUPNÉHO OVOCE:") 
+    if vyber in ovoce: 
+        nabidka = 0
+        print("Bezva, toto ovoce je v nabídce.")
+        break 
+    else:
+        print("Ovoce není v nabídce.")
+"""            
+"""
+while True:
+    operation = input("Vyber operator (+ , - ): ")
+    operators = ["+","-"]
+    
+    if operation in operators:
+        number_1 = int(input("Zadej první číslo:"))
+        number_2 = int(input("Zadej druhe číslo:"))
+
+        if operation == '+':
+            print(f'{number_1} + {number_2} = {number_1 + number_2}')
+        else:
+            print(f'{number_1} - {number_2} = {number_1 - number_2}')
+        
+        again = input('Chcete provést další operaci?(a pro ano, jakákoliv jiná klávesa pro ne): ')
+        if again == "a":
+            continue
+        else:
+            print("ukoncuji")
+            break
+    else:
+        print("Nezadali jste platný operátor, zkuste to znovu")
 """
