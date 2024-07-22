@@ -152,7 +152,7 @@ def Main_code():
                     move_counter = 0
                 else:
                     move_counter = 1
-                                   
+                                 
     # Fill the board with symbols
     def modify_board(number, symbol):
         # number -1 because the board index start with 0
@@ -172,8 +172,7 @@ def Main_code():
             board[2][number] = symbol
         # Prints changed gameboard after every move 
         Gameboard()
-        #return number, symbol
-
+       
     # Decides winning conditions 
     def check_winner(symbol, move):
         
