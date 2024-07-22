@@ -1,0 +1,4 @@
+shopping_list.txt
+mleko
+chleba
+vejce

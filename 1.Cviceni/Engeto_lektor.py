@@ -171,6 +171,7 @@ for i, data in vysledky.items():
     print(f"|{i:^10}|{data:^5}|")
 """
 #Lekce 10. cviceni
+"""
 import os 
 from pprint import pprint
 
@@ -203,7 +204,254 @@ def zformatuj_nazvy():
 
 
 print(zformatuj_nazvy())
+"""
+
+# Lekce 11
+"""
+import csv 
+
+hlavicka = ["jmeno", "prijmeni", "email","telefon"]
+osoba_1 = ["Radim", "Jedlicka", "radim@gmail.com","987654321"]
+osoba_2 = ["Jaroslav", "Tylich", "jarda@engeto.cz","321654987"]
+
+csv_soubor = open(
+    "engeto_lide_python.csv",
+    mode="w",
+    encoding="UTF-8",
+    newline=""  # None
+)
+print(csv_soubor)
+zapisovac = csv.writer(csv_soubor, delimiter=",")
+
+#zapisovac.writerow(hlavicka)
+#zapisovac.writerow(osoba_1)
+#zapisovac.writerow(osoba_2)  # writerows(iterable)
+zapisovac.writerows((hlavicka,osoba_1,osoba_2))
+csv_soubor.close()
 
 
+#dictWriter
+osoba_3 = {"jmeno": "Matous", "prijmeni": "Pokoj", "vek": "28"}
+osoba_4 = {"jmeno": "Petr", "prijmeni": "Svetr", "vek": "27"}
+
+dalsi_csv = open(
+    "engeto_lide_linux.csv",
+    mode="w",
+    encoding="utf-8",
+    newline=""
+)
+
+zapisovac = csv.DictWriter(dalsi_csv, fieldnames=osoba_3.keys())
+zapisovac.writeheader()
+zapisovac.writerow(osoba_3)
+zapisovac.writerow(osoba_4)
+zapisovac.writerows((osoba_3, osoba_4))
+dalsi_csv.close() 
+"""
+"""
+# Precti csv soubor 
+obsah_csv = open(
+    "engeto_lide_linux.csv",
+    encoding="utf-8",
+    mode="r"  # Default
+)
+
+cteni = csv.reader(obsah_csv)
+print(cteni)
+
+for radek in cteni:
+    print(radek)
+obsah_csv.close()
+
+# DictReader 
+moje_csv = open(
+    "engeto_lide_linux.csv",
+    mode="r",
+    encoding="utf-8"
+)
+obsah = csv.DictReader(moje_csv)
+print(tuple(obsah))
+moje_csv.close()
+
+# Kontextovy manager 
+
+jmeno_csv = "engeto_lide_linux.csv"
+with open(jmeno_csv, encoding="utf-8", mode="r") as csv_soubor:
+    cteni = csv.DictReader(csv_soubor)
+    for zaznam in cteni:
+        print(zaznam)
+"""
+
+# JSON files 
+"""
+import json
+
+chuckuv_slovnik = {
+    "jmeno": "Chuck Norris",
+    "neuspech": None,
+    "kliky": "vsechny",
+    "konkurence": False,
+    "doplneni": "Łukasz",
+}
+
+print(type(chuckuv_slovnik))
+
+vypis_json = json.dumps(chuckuv_slovnik)  # výstup pouze jako str
+print(vypis_json)
+print(type(vypis_json))
+
+json_soubor = open(
+    "prvni_JSON.json",
+    mode="w",
+    encoding="UTF-8"
+)
+
+json.dump(chuckuv_slovnik, json_soubor)
+json_soubor.close()
+
+# Kontextovy manazer 
+with open("prvni_JSON.json", mode="w", encoding="UTF-8") as json_soubor:
+    json.dump(chuckuv_slovnik, json_soubor)  # CO, KAM
+
+# Nacti existujici soubor 
+existujici_json = open("prvni_JSON.json", mode="r", encoding="UTF-8")
+print(existujici_json)
+obsah_json = json.load(existujici_json)
+print(obsah_json)
+print(type(obsah_json))
+existujici_json.close()
+
+# Nacti pomoci kontext manazera 
+with open("prvni_JSON.json", mode="r", encoding="UTF-8") as existujici_json:
+    obsah_json = json.load(existujici_json)  # CO
+
+print(obsah_json)
+existujici_json.closed
+
+json_str = json.dumps(
+    chuckuv_slovnik,
+    ensure_ascii=False,  # False zapíše původní znak, True zapíše reprezentaci znaku pomocí lomítek.
+    indent=4, # odsadí zapsaný json o 4 mezery
+    sort_keys=True #  seřadí klíče (True/False)
+)
+
+# Zapis s kontextovym manazeram 
+
+with open("druhy_JSON.json", mode="w", encoding='UTF-8') as json_soubor:
+    json.dump(
+        chuckuv_slovnik,
+        json_soubor,
+        ensure_ascii=False,
+        indent=4,
+        sort_keys=True
+    )
+
+json_soubor.closed
+"""
+"""
+# Systemovy argument SYS.ARGV
+
+import sys 
+# nefunguje 
+print("Jméno spuštěného programu:", sys.argv[0])
+if len(sys.argv) > 1:
+    print("Byl předán argument:", sys.argv[1])
+else:
+    print("Nebyl předán žádný argument.")
+
+# Načtení seznamu z nákupního listu
+with open("shopping_list.txt", "r") as f:
+    shopping_list = f.read().splitlines()
+
+print("Původní nákupní seznam:")
+print(shopping_list)
+
+# Přidání nových položek na konec seznamu
+if len(sys.argv) > 1:
+    for item in sys.argv[1:]:
+        shopping_list.append(item)
+
+# Vypsání upraveného seznamu
+print("Upravený nákupní seznam:")
+print(shopping_list)
+
+# Uložení seznamu zpět do souboru
+with open("shopping_list.txt", "w") as f:
+    for item in shopping_list:
+        f.write(item + "\n")
+"""
+
+# Lekce 11. Cviceni 
+
+import os 
+import json
+import csv
+from pprint import pprint
+
+# TODO: Relativni cesta souborem 
+rel_cesta = "solution/"
+
+# TODO Potrebne klice 
+zadouci_klice = ["first_name", "last_name", "email"]
+
+# TODO fce json_to_csv 
+def json_to_csv():
+    jsony = najdi_json(rel_cesta)
+
+    obsah_json = []
+    for soubor in jsony:
+        for zaznam in precti_json(soubor):
+            obsah_json.append(filtr_klicu(zadouci_klice, zaznam))
+
+    zapis_csv("soubor1.csv", obsah_json)
+
+# TODO funkce, ktera najde vsechny json soubory 
+def najdi_json(adresar):
+    list_souboru = []
+    for jmeno in os.listdir(adresar):
+        if os.path.splitext(jmeno)[1] == ".json" and "_" in jmeno:
+            list_souboru.append(jmeno)
+    return list_souboru
+
+# TODO funkce, ktera nacte obsah souboru 
+def precti_json(jmeno):
+    try:
+        soub_json = open(os.path.join("solution", jmeno), "r", encoding="UTF-8")
+    except FileNotFoundError:
+        print("File not found")
+    else:
+        lide_info = json.load(soub_json)
+        soub_json.close()
+        return lide_info
+
+# TODO funkce, ktera upravi obsah souboru 
+def filtr_klicu(zadouci:list, puvodni_zaznam:dict):
+    vycistene_zaznam = {}
+
+    for klic in puvodni_zaznam.keys():
+        if klic not in zadouci:
+            continue
+        vycistene_zaznam[klic] = puvodni_zaznam[klic]
+    return vycistene_zaznam
+
+# TODO funkce, ktera ulozi soubory do csv na lokal
+def zapis_csv(jmeno_souboru:str, zaznamy:list):
+
+    with open(jmeno_souboru, encoding="utf-8", mode="w") as csv_vystup:
+        try:
+            sloupecky = zaznamy[0].keys()
+        except IndexError:
+            print("Problem s indexem")
+        except FileExistsError:
+            print("Nemuzu prepsat existujici soubor")
+        else:
+            zapis = csv.DictWriter(csv_vystup, fieldnames=sloupecky)
+            zapis.writeheader()
+            zapis.writerows(zaznamy)
+            print("soubor zapsan")
+
+
+test = json_to_csv()
+pprint(test)
 
 

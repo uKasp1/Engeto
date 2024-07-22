@@ -279,7 +279,7 @@ for i in range(len(kopie_jmen)):
 # Vypiš výsledek
 print(kopie_jmen)
 """
-"""
+
 velikost = 10
 symboly = ['#',' ']
 sachovnice = []
@@ -295,7 +295,7 @@ for radek in range(velikost):
     sachovnice.append(''.join(rada))
 # Vypiš výslednou šachovnici
 print('\n'.join(sachovnice))
-"""
+
 
 """
 seznam_slov = ["jablko", "pomeranč", "banán", "kiwi", "hruška"]
