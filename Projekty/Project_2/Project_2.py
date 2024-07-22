@@ -158,11 +158,11 @@ def Main_code():
         # number -1 because the board index start with 0
         number -= 1 
         # At the start we defined a board with 3 list in 1. Each list is one row with indexing 0[0,1,2], 1[0,1,2], 2[0,1,2]
-        # If the input number is (from 1 to 3) - 1 so its the same as indexing of the list, symbol is add to corresponding possition 
+        # If the input number is ((from 1 to 3) - 1) then, its the same as indexing of the list, symbol is add to corresponding possition 
         if number >= 0 and number <= 2:
             board[0][number] = symbol
         elif number >= 3 and number <= 5:
-            # Here is - 3 because we are in second list but the indexes are still form 0 to 2. If we have input 5 then - 3
+            # Here is - 3 because we are in second list but the indexes are still form 0 to 2. If we have input 5, then - 3
             # that is 2 and we have corresponding possition in the list  
             number -= 3 
             board[1][number] = symbol
@@ -172,7 +172,7 @@ def Main_code():
             board[2][number] = symbol
         # Prints changed gameboard after every move 
         Gameboard()
-        return number, symbol
+        #return number, symbol
 
     # Decides winning conditions 
     def check_winner(symbol, move):
