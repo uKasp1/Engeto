@@ -207,7 +207,7 @@ print(zformatuj_nazvy())
 """
 
 # Lekce 11
-"""
+
 import csv 
 
 hlavicka = ["jmeno", "prijmeni", "email","telefon"]
@@ -247,8 +247,7 @@ zapisovac.writerow(osoba_3)
 zapisovac.writerow(osoba_4)
 zapisovac.writerows((osoba_3, osoba_4))
 dalsi_csv.close() 
-"""
-"""
+
 # Precti csv soubor 
 obsah_csv = open(
     "engeto_lide_linux.csv",
@@ -280,7 +279,7 @@ with open(jmeno_csv, encoding="utf-8", mode="r") as csv_soubor:
     cteni = csv.DictReader(csv_soubor)
     for zaznam in cteni:
         print(zaznam)
-"""
+
 
 # JSON files 
 """
@@ -382,7 +381,7 @@ with open("shopping_list.txt", "w") as f:
 """
 
 # Lekce 11. Cviceni 
-
+"""
 import os 
 import json
 import csv
@@ -453,5 +452,7 @@ def zapis_csv(jmeno_souboru:str, zaznamy:list):
 
 test = json_to_csv()
 pprint(test)
+"""
 
+## Lekce 12 
 
