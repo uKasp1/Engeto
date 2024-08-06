@@ -9,6 +9,7 @@ import requests
 from bs4 import BeautifulSoup
 import argparse
 import csv
+from pprint import pprint
 
 # Create a arguments for input 
 def arguments_parse():
@@ -98,10 +99,13 @@ def links_url():
                 td_number = tr_parties.find_all("td",{"class": "cislo"}) #we need "td" data with class:cislo 
                 if td_number: #if yes we have correct data for scraping, becouse some "td" were hidden or empty 
                     data_parties = row_atr_table_parties(td_row_parties) # from every td take define tags
-                    dict_data.update(data_parties) #update dict 
+                    for key in data_parties: #some of these scrape data had special symbols, which been removed 
+                        value = data_parties.get(key) #from key we get item 
+                        value = value.replace("\xa0","").strip() #strip the special symbols from item 
+                        dict_data.update({key:value}) #update dict 
             list_data.append(dict_data) #update dict to the list, becouse we have same keys on every page we cannot used dict for all, the data in dict will be rewritten so its need to be stored in list 
         tr_party()
-
+    pprint(list_data)
     return list_data       
 
 def append_data():
@@ -134,4 +138,6 @@ def create_excell():
     print("Data scraped from: ", web, "And saved to:" , csv_filename)
     print("Program closed!")
     print("-"*50)
-create_excell()
+
+if __name__ == "__main__":
+    create_excell()
